@@ -1,13 +1,40 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  @apply bg-[#2e2e2e] w-screen h-screen;
+}
+.icons {
+  @apply absolute bottom-[100px] right-[340px] w-[100px] text-[#B3B7EE];
+}
+.icon {
+  @apply w-10 h-10;
+}
+.header {
+  @apply flex justify-center pt-10 flex-col items-center;
+}
+.header-button {
+  @apply bg-purple-600 w-[400px] py-2 flex justify-center items-center rounded-2xl font-normal;
+}
+.header-text {
+  @apply px-10  text-[#f8fafc] text-2xl ;
+}
+.list-text-li {
+  @apply mx-3 w-[375px] h-[50px] bg-[#B3B7EE] flex justify-between rounded-2xl my-2;
+}
+.list-li {
+  @apply font-sans font-medium flex justify-between px-3 w-full text-[#ffffff];
+}
+.input {
+  @apply bg-[#B3B7EE] rounded-2xl w-[375px] h-[40px] mx-3 my-1 px-3;
+}
+.add-button {
+  @apply bg-gradient-to-r from-[#9e6bf0] to-blue-500 hover:from-pink-500 hover:to-[#773358] w-[375px] h-[40px] mx-3 rounded-2xl text-xl font-semibold
+}
+.background {
+  @apply w-[400px] h-full bg-gradient-to-t via-purple-600 from-indigo-400 mx-auto rounded-lg text-white py-5
+}
+.checkIcon {
+  @apply w-7 h-7 ;
 }
