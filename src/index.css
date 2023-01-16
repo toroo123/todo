@@ -18,7 +18,7 @@
   @apply bg-purple-600 w-[400px] py-2 flex justify-center items-center rounded-2xl font-normal;
 }
 .header-text {
-  @apply px-10  text-[#f8fafc] text-2xl ;
+  @apply px-14  text-[#f8fafc] text-2xl;
 }
 .list-text-li {
   @apply mx-3 w-[375px] h-[50px] bg-[#B3B7EE] flex justify-between rounded-2xl my-2;

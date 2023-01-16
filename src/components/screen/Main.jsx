@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect ,useState } from 'react'
 import { AiFillPlusCircle } from 'react-icons/ai'
 import {IoMdArrowBack} from 'react-icons/io'
-import Header from "../Header"
-import Add from './Add'
+import Header from "../Header";
+import Add from './Add';
   
 const Main = () => {
-  const [state , setState] = useState('')
-  const [data, setData] = useState([])
-  const [count , setCount] = useState(1)
+  const [state , setState] = useState('true')
+  const [data, setData] = useState(() => {
+    const list = JSON.parse(localStorage.getItem('localTasks'))
+    return list;
+  })
+  const [count , setCount] = useState(0)
   
   const addList = (text,date) => {
     alert('TODO -д нэмэгдлээ') 
@@ -15,11 +18,20 @@ const Main = () => {
       id: data.length + 1,
       title: text,
       currentDate: date,
-      complete: false
+      deleted:false,
+      complete: false 
     }
+    setState("")
     setCount(count + 1)
     setData([...data,newItem])
+    localStorage.setItem('localTasks', JSON.stringify([...data, newItem]))
   }
+  useEffect(()=>{
+    if(localStorage.getItem('localTasks')){
+      const list = JSON.parse(localStorage.getItem('localTasks'))
+      setData(list)
+  }
+  },[])
 
   const checkIcon = (id) =>{
     setData(
@@ -36,18 +48,32 @@ const Main = () => {
   }
 
   const deleteList = (text) =>{
-    const Todo = data.filter((list) => {
-        return list !== text 
-    })
-    setData(Todo)
+    setCount(count-1)
+    setData(
+      data.map(m=>{
+        if(m === text) {
+          return {
+            ...m,
+            deleted: !m.deleted
+          }
+        }
+        return m
+      })
+    )
+    
   }
-  
+
+
+  useEffect(()=>{
+    localStorage.setItem('localTasks', JSON.stringify(data))
+  },[data])
+
   return (
     <div className='container'>
         <div>
           <h1 className='p-5 text-white text-[40px]'>ToDo App</h1>
             <div>
-              {state ? <Header data={data} checkIcon={checkIcon} deleteList={deleteList}/> : <Add addList={addList}/>}
+              {state ? <Header data={data} checkIcon={checkIcon} deleteList={deleteList} /> : <Add addList={addList}/>}
             </div>
             <div className='icons'>
               {state ? <button 

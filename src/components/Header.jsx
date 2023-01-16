@@ -1,35 +1,22 @@
 import React, { useState } from 'react'
-import Done from './screen/Done'
+import History from './screen/HIstory'
 import Section from './Section'
 
 const Header = ({data, checkIcon, deleteList}) => {  
-  const [state, setState] = useState(false)
-  const [doneData, setDoneData] = useState([])
-  const [doneCount , setDoneCount] = useState(1)
-
-  const addDone = (doneText,doneDate) => {
-    alert('DONE -д нэмэгдлээ') 
-    const newDone = {
-      id: doneData.length + 1,
-      title: doneText,
-      currentDate: doneDate
-    }
-    setDoneCount(doneCount + 1)
-    setDoneData([...doneData,newDone])
-  }
+  const [state, setState] = useState(true)
   return (
     <>
       <div className='header'>
           <div className='header-button' >
               <button 
               onClick={() => {setState(true)}}
-              className='header-text border-r-2 border-r-white'>TODO</button>
+              className='header-text border-r-2 border-r-white'>ToDo</button>
               <button  
               onClick={() =>{setState(false)}}
-              className='header-text'>DONE</button>
+              className='header-text'>History</button>
           </div>
       </div>
-      {state ? <Section data = {data} checkIcon = {checkIcon} deleteList = {deleteList} /> : <Done doneData={doneData}/> }
+      {state ? <Section data = {data} checkIcon = {checkIcon} deleteList = {deleteList} /> : <History data={data}/> }
     </>
   )
 }
